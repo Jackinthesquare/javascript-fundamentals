@@ -56,7 +56,14 @@ let apt1 = {
     windows: 0, 
     rent: 4500, 
     unit: '1A',
-    tenants: [tenant1,tenant2,tenant3,tenant4]
+    lease: function(tenant) {
+        if (this.tenants.length === this.bedrooms){
+            return `${this.unit} is already full`
+        }
+        this.tenants.push(tenant)
+        console.log(tenant.name,'has rented out', this.unit)
+    },
+    tenants: []
 }
 
 let apt2 = {
@@ -66,7 +73,7 @@ let apt2 = {
     windows: 2, 
     rent: 1500, 
     unit: '1B',
-    tenants: [tenant1,tenant2,tenant3,tenant4]
+    tenants: []
 }
 
 let apt3 = {
@@ -76,7 +83,7 @@ let apt3 = {
     windows: 0, 
     rent: 2400, 
     unit: '1C',
-    tenants: [tenant1,tenant2,tenant3,tenant4]
+    tenants: []
 }
 
 let apt4 = {
@@ -86,7 +93,7 @@ let apt4 = {
     windows: 0, 
     rent: 900, 
     unit: '1D',
-    tenants: [tenant1,tenant2,tenant3,tenant4]
+    tenants: []
 }
 
 
@@ -100,3 +107,6 @@ let building = {
 }
 
 // building.apartments.forEach()
+/* [Name of the Acting object].[action it is taking](target)
+example: apt1.lease(tenant1) 
+*/
