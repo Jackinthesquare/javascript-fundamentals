@@ -56,13 +56,6 @@ let apt1 = {
     windows: 0, 
     rent: 4500, 
     unit: '1A',
-    lease: function(tenant) {
-        if (this.tenants.length === this.bedrooms){
-            return `${this.unit} is already full`
-        }
-        this.tenants.push(tenant)
-        console.log(tenant.name,'has rented out', this.unit)
-    },
     tenants: []
 }
 
@@ -103,10 +96,35 @@ let building = {
     streetAddress: '74 N 7th Street, Brooklyn Ny 11249',
     laundry: false,
     allowsPets: false,
+    lease: function(apt, tenant) {
+        if (apt.tenants.length === apt.bedrooms){
+            return `${apt.unit} is already full`
+        }
+        apt.tenants.push(tenant)
+        console.log(tenant.name,'has rented out', apt.unit)
+    },
     apartments: [apt1,apt2,apt3]
 }
 
 // building.apartments.forEach()
 /* [Name of the Acting object].[action it is taking](target)
 example: apt1.lease(tenant1) 
+lease: function(tenant) {
+        if (this.tenants.length === this.bedrooms){
+            return `${this.unit} is already full`
+        }
+        this.tenants.push(tenant)
+        console.log(tenant.name,'has rented out', this.unit)
+    },
+now we need to move this up to prevent copying repetitive code such as in apt2,apt3,etc.
+
+so we move it to building with one more parameter
+example: building.lease(apt, tenant)
+lease: function(apt, tenant) {
+        if (this.tenants.length === this.bedrooms){
+            return `${this.unit} is already full`
+        }
+        this.tenants.push(tenant)
+        console.log(tenant.name,'has rented out', this.unit)
+    },
 */
