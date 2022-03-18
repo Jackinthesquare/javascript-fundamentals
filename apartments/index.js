@@ -1,5 +1,5 @@
 /* arrays for a single data type around a single topic
-    objects for multiple data type aroun a single topic
+    objects for multiple data type around a single topic
 
 // examples
 objects = { name: 'michael', score: 100 }
@@ -104,8 +104,23 @@ let building = {
         if (this.allowsPets === false && tenant.pet){
             return `${apt.unit} is available, but you must give ${tenant.pet} up for adoption!`
         }
-        apt.tenants.push(tenant)
+        let t =apt.tenants.push(tenant)
         console.log(tenant.name,'has rented out', apt.unit)
+        return t
+    },
+    occupiedApts: function() {
+        //returns only the apts which have tenants inside them
+        //condition to test: apt.tenants.length
+        return this.apartments.filter((el) => {
+            return el.tenants.length > 0
+        })
+    },
+    fullApts: function() {
+        //returns only the apts which are completely full
+        //condition to test: apt.tenants.length === apt.bedrooms
+        return this.apartments.filter((el) => {
+            return el.tenants.length === el.bedrooms
+        })
     },
     apartments: [apt1,apt2,apt3]
 }
@@ -131,4 +146,39 @@ lease: function(apt, tenant) {
         this.tenants.push(tenant)
         console.log(tenant.name,'has rented out', this.unit)
     },
+*/
+
+
+
+
+
+
+
+
+/*
+//Write a basic JavaScript object that represents a user that has no fewer than 3 keys/properties about that user
+let digiKid = {
+    name: 'Matt',
+    age: 12,
+    partner: 'gabumon'
+}
+
+//Write a function called greet that takes no arguments and prints the string "Hello World"
+const greet = () => console.log('Hello World!')
+
+//Create an array called fruits with 5 elements
+const fruits = ['banana','apple','orange','grape','pineapple']
+
+//console.log the second element and console.log the last element of the above array
+console.log(fruits[1])
+console.log(fruits[fruits.length-1])
+
+//Create an object that represents an apartment building without referring to any code
+let newBuilding = {
+    streetName: '11 Broadway',
+    elevator: true,
+    gym: false,
+    commercialShops: true,
+    office: [off1,off2,off3],
+}
 */
